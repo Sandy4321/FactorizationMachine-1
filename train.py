@@ -66,9 +66,9 @@ if args.train_data_path:
                 n = step * batch_size // data_size
                 avg_loss = np.mean(losses)
                 losses.clear()
-                tf.logging.info("Epoch: "+str(n)+", Average loss: "+str(avg_loss))
 
-                if n%10 == 0 and run_test:
+
+                if run_test:
                     test_losses = []
                     test_epoch = (test_data.get_data_size()-1) // batch_size + 1
                     for _ in range(test_epoch):
@@ -78,7 +78,9 @@ if args.train_data_path:
                         test_loss = sess.run(model.get_loss_var(), feed_dict=feed_dict)
                         test_losses.append(test_loss)
                     avg_test_loss = np.mean(test_losses)
-                    tf.logging.info("Test loss: "+str(avg_test_loss))
+                    tf.logging.info("Epoch: " + str(n) + ", Average loss: " + str(avg_loss)+" Test loss: "+str(avg_test_loss))
+                else:
+                    tf.logging.info("Epoch: " + str(n) + ", Average loss: " + str(avg_loss))
 
         if len(losses) > 0:
             final_loss = np.mean(losses)
