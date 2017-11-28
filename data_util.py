@@ -14,7 +14,7 @@ class Data(object):
         self._y = None
         self._index = 0
 
-    def load_data(self)->bool:
+    def load_data(self)->bool:  # Load data from csv file
         try:
             data = read_csv(self._path)
             self._data_size = data.shape[0]
@@ -35,7 +35,7 @@ class Data(object):
     def get_feature_map(self)->tuple:
         return tuple(self._feature_map)
 
-    def get_next_batch(self)->(np.ndarray, np.ndarray):
+    def get_next_batch(self)->(np.ndarray, np.ndarray):  # generate data batch for model
         if self._index + self.batch_size <= self._data_size:
             x = self._x[self._index:self._index+self.batch_size, ]
             y = self._y[self._index:self._index+self.batch_size, ]
