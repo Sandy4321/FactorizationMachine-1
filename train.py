@@ -6,23 +6,26 @@ import numpy as np
 import codecs
 
 
-parser = argparse.ArgumentParser(description="Parameters")
+parser = argparse.ArgumentParser(description="""
+FactorizationMachine is a library using Factorization Machine model 
+to solve the problem about regression, classification and prediction.  
+""")
 # command line parameters
-parser.add_argument("--batch_size", type=int, default=16,
+parser.add_argument("-b","--batch_size", type=int, default=16,
                     help="size of mini-batch")
-parser.add_argument("--train_epoch", type=int, default=500,
+parser.add_argument("-e", "--train_epoch", type=int, default=500,
                     help="times to train the model")
-parser.add_argument("--learning_rate", type=int, default=0.001,
+parser.add_argument("-r", "--learning_rate", type=int, default=0.001,
                     help="learning rate for the model")
-parser.add_argument("--train_data_path", type=str, default=None,
+parser.add_argument("-d","--train_data_path", type=str, default=None,
                     help="path to load input data")
-parser.add_argument("--test_data_path", type=str, default=None,
+parser.add_argument("-t","--test_data_path", type=str, default=None,
                     help="path to load test data")
-parser.add_argument("--factor_dim", type=int, default=8,
+parser.add_argument("-f","--factor_dim", type=int, default=8,
                     help="dimension of the feature vector")
-parser.add_argument("--use_cross_entropy", type=bool, default=False,
+parser.add_argument("-x", "--use_cross_entropy", action="store_true", default=False,
                     help="use cross entropy as loss, else MSE is used")
-parser.add_argument("--dump_factors_path", type=str, default=None,
+parser.add_argument("-o","--dump_factors_path", type=str, default=None,
                     help="path to dump the feature vectors")
 
 args = parser.parse_args()
@@ -66,7 +69,6 @@ if args.train_data_path:
                 n = step * batch_size // data_size
                 avg_loss = np.mean(losses)
                 losses.clear()
-
 
                 if run_test:
                     test_losses = []
