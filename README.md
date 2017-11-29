@@ -72,11 +72,8 @@ the feature name, others record the values. all values must be numerical. The fi
 the result to be predicted.
 For example, a movie rating dataset that predicts a user's score to a new movie, may have a
 train dataset as follow type:
-> rating,userId,movieId,RatingOfMovie=TI,RatingOfMovie=SW,LastRate=TI,LastRate=SW,RateTime
-
-> 9,116,20090811,9,6,1,0,14
-
-> 5,117,20090811,8,10,0,1,13
-
+> rating,userId,movieId,RatingOfMovie=TI,RatingOfMovie=SW,LastRate=TI,LastRate=SW,RateTime  
+> 9,116,20090811,9,6,1,0,14  
+> 5,117,20090811,8,10,0,1,13  
 > ...
 
